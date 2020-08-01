@@ -1,0 +1,9 @@
+#+title: .cime
+#+author: Taylor Viti
+#+email: tviti@hawaii.edu
+#+date: [2020-07-31 Fri]
+
+Configuration files for the [[https://esmci.github.io/cime/versions/master/html/index.html][Common Infrastructure for Modeling the
+Earth (CIME)]], intended to be used for building/running the [[https://www.cesm.ucar.edu][Community
+Earth Systems Model (CESM)]] on the University of Hawaiʻi at Mānoa's
+[[https://www.hawaii.edu/its/ci/xcat/][xcat cluster]].
