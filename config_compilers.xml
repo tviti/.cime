@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<config_compilers version="2.0">
+
+  <compiler COMPILER="intel" MACH="xcat">
+<!-- NOTE: These are OpenMPI wrappers for the intel compilers! Use -->
+<!-- mpiicc/mpiicpc/mpiifort for impi wrappers -->
+    <MPICC> mpicc  </MPICC>
+    <MPICXX> mpicpc </MPICXX>
+    <MPIFC> mpifort </MPIFC>
+    <!-- <CPPDEFS> -->
+    <!--   <append> -DNO_COMM_F2C </append> -->
+    <!-- </CPPDEFS> -->
+    <NETCDF_PATH>/opt/apps/software/data/netCDF-Fortran/4.4.5-intel-2018.5.274</NETCDF_PATH>
+    <ESMF_LIBDIR>/opt/apps/software/geo/ESMF/7.1.0r-intel-2018.5.274/lib</ESMF_LIBDIR>
+    <FFLAGS>
+      <append MODEL="mom"> -r8 </append>
+      <append> -I$ENV{MKLROOT}/include </append>
+    </FFLAGS>
+    <CFLAGS>
+      <append> -I$ENV{MKLROOT}/include </append>
+    </CFLAGS>
+    <SLIBS>
+      <append> $SHELL{${NETCDF_PATH}/bin/nf-config --flibs} -lmkl_rt -ldl </append>
+    </SLIBS>
+  </compiler>
+
+  <compiler COMPILER="gnu" MACH="xcat">
+    <MPICC> mpicc  </MPICC>
+    <MPICXX> mpicxx </MPICXX>
+    <MPIFC> mpif90 </MPIFC>
+    <MPI_PATH>$ENV{I_MPI_ROOT}</MPI_PATH>
+    <NETCDF_PATH>/opt/apps/software/data/netCDF-Fortran/4.4.5-intel-2018.5.274</NETCDF_PATH>
+    <FFLAGS>
+      <append MODEL="mom"> -r8 </append>
+    </FFLAGS>
+    <SLIBS>
+      <append> $SHELL{${NETCDF_PATH}/bin/nf-config --flibs} </append>
+    </SLIBS>
+  </compiler>
+
+</config_compilers>
