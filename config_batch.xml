@@ -6,14 +6,16 @@
     <submit_args>
       <arg flag="--time" name="$JOB_WALLCLOCK_TIME"/>
       <arg flag="-p" name="$JOB_QUEUE"/>
-      <!-- <arg flag="-\-account" name="$PROJECT"/> -->
     </submit_args>
     <directives>
-      <directive>--core-spec=0</directive>
       <directive>--constraint="ib_qdr"</directive>
+      <directive>--mem=120G</directive>
+      <directive>--distribution="*:*:*"</directive>
+      <directive>--cpus-per-task=1</directive>
     </directives>
     <queues>
-      <queue walltimemax="72:00:00" nodemin="1" nodemax="20">exclusive</queue>
+      <queue walltimemax="72:00:00" nodemin="1" nodemax="20" default="true">exclusive</queue>
+      <queue walltimemax="72:00:00" nodemin="1" nodemax="20">kill-exclusive</queue>
     </queues>
   </batch_system>
 

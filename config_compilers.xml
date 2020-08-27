@@ -2,25 +2,30 @@
 <config_compilers version="2.0">
 
   <compiler COMPILER="intel" MACH="xcat">
-<!-- NOTE: These are OpenMPI wrappers for the intel compilers! Use -->
-<!-- mpiicc/mpiicpc/mpiifort for impi wrappers -->
-    <MPICC> mpicc  </MPICC>
-    <MPICXX> mpicpc </MPICXX>
-    <MPIFC> mpifort </MPIFC>
-    <!-- <CPPDEFS> -->
-    <!--   <append> -DNO_COMM_F2C </append> -->
-    <!-- </CPPDEFS> -->
-    <NETCDF_PATH>/opt/apps/software/data/netCDF-Fortran/4.4.5-intel-2018.5.274</NETCDF_PATH>
+    <MPICC> mpiicc  </MPICC>
+    <MPICXX> mpiicpc </MPICXX>
+    <MPIFC> mpiifort </MPIFC>
+    <SCC> icc </SCC>
+    <SCXX> icpc </SCXX>
+    <SFC> ifort </SFC>
+    <NETCDF_FORTRAN_PATH>/opt/apps/software/data/netCDF-Fortran/4.4.5-intel-2018.5.274</NETCDF_FORTRAN_PATH>
+    <NETCDF_C_PATH>/opt/apps/software/data/netCDF/4.6.2-intel-2018.5.274</NETCDF_C_PATH>
     <ESMF_LIBDIR>/opt/apps/software/geo/ESMF/7.1.0r-intel-2018.5.274/lib</ESMF_LIBDIR>
     <FFLAGS>
-      <append MODEL="mom"> -r8 </append>
       <append> -I$ENV{MKLROOT}/include </append>
+      <append> -no-fma </append>
+      <append MODEL="mom"> -r8 </append>
     </FFLAGS>
     <CFLAGS>
+      <append> -no-fma </append>
       <append> -I$ENV{MKLROOT}/include </append>
     </CFLAGS>
+    <LDFLAGS>
+      <append compile_threaded="true"> -qopenmp </append>
+    </LDFLAGS>
     <SLIBS>
-      <append> $SHELL{${NETCDF_PATH}/bin/nf-config --flibs} -lmkl_rt -ldl </append>
+      <append> $SHELL{${NETCDF_FORTRAN_PATH}/bin/nf-config --flibs} </append>
+      <append> -lmkl_rt -ldl </append>
     </SLIBS>
   </compiler>
 
