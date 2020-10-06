@@ -4,7 +4,7 @@
     <DESC>
       University of Hawaii xCAT HPC.
     </DESC>
-    <NODENAME_REGEX>xcat</NODENAME_REGEX>
+    <NODENAME_REGEX>node.*</NODENAME_REGEX>
     <OS>LINUX</OS>
     <COMPILERS>intel,gnu</COMPILERS>
     <MPILIBS compiler="intel" >impi,openmpi</MPILIBS>
